@@ -8,6 +8,8 @@ TagManager:
   - Enemy
   - Coin
   - Coins
+  - Mud
+  - End
   layers:
   - Default
   - TransparentFX

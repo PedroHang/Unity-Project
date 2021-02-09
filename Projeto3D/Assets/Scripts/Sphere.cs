@@ -48,10 +48,20 @@ public class Sphere : MonoBehaviour
 
     void OnCollisionEnter(Collision other) {
         if(other.gameObject.CompareTag("Ground")){
+            speed = 6f;
+            onGround = true;
+        }
+
+        if(other.gameObject.CompareTag("Mud")){
+            speed = 3f;
             onGround = true;
         }
 
         if(other.collider.tag == "Enemy"){
+            Replay();
+        }
+
+        if(other.collider.tag == "End"){
             Replay();
         }
     }
