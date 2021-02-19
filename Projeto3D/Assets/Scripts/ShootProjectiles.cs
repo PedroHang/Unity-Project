@@ -9,10 +9,6 @@ public class ShootProjectiles : MonoBehaviour
 
     private float nextActionTime = 0.0f;
     public float period = 0.5f;
-    void Start()
-    {
-        
-    }
 
     // Update is called once per frame
     void Update()

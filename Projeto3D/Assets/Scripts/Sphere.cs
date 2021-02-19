@@ -33,9 +33,13 @@ public class Sphere : MonoBehaviour
             transform.position += Vector3.right * speed * Time.deltaTime;
         }
 
+        if(Input.GetKey(KeyCode.W)){
+            speed = 10f;
+        }
+
         if(onGround){
             if(Input.GetButtonDown("Jump")){
-                rb.velocity = new Vector3(0f, 7f, 0f);
+                rb.velocity = new Vector3(0f, 7f, 2f);
                 onGround = false;
             }
         }
