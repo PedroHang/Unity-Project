@@ -41,6 +41,7 @@
      <Compile Include="Assets\Scripts\Crown.cs" />
      <Compile Include="Assets\Scripts\Destroyer.cs" />
      <Compile Include="Assets\Scripts\Player.cs" />
+     <Compile Include="Assets\Scripts\RepulsionOrb.cs" />
      <Compile Include="Assets\Scripts\ScoreManager.cs" />
      <Compile Include="Assets\Scripts\ShootProjectiles.cs" />
      <Compile Include="Assets\Scripts\Sound.cs" />

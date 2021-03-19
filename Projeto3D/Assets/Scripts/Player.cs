@@ -4,18 +4,23 @@ using System;
 using UnityEngine.Audio;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class Player : MonoBehaviour
 {
     public bool onGround;
     public float speed = 6f;
     private Rigidbody rb;
-    private const int MAX_JUMP = 2;
+    public int MAX_JUMP = 1;
     private int currentJump = 0;
 
     private bool isInArea = false;
+    private bool repulsionOrb = false;
+    private bool doubleJump = false;
+    public TextMeshProUGUI textPowerUp;
  
     Animator animator;
+
     void Start()
     {
         onGround = true;
@@ -40,6 +45,9 @@ public class Player : MonoBehaviour
 
         if(Input.GetKey(KeyCode.W)){
             speed = 10f;
+            while(speed >= 10f){
+                animator.speed = 2.0f;
+            }
         }
 
         if(onGround || MAX_JUMP > currentJump){
@@ -58,6 +66,22 @@ public class Player : MonoBehaviour
     }
 
     void OnCollisionEnter(Collision other) {
+
+        // SETTING REPULSION ORB = TRUE
+
+        if(other.gameObject.CompareTag("RepulsionPowerUp")){
+            repulsionOrb = true;
+            Destroy(other.gameObject);
+            Debug.Log("FOI");
+            textPowerUp.gameObject.SetActive(true);
+            MAX_JUMP = 2;
+        }
+
+        // ---------------------------
+
+
+        // SETTING GROUND
+
         if(other.gameObject.CompareTag("Ground")){
             speed = 6f;
             onGround = true;
@@ -65,12 +89,21 @@ public class Player : MonoBehaviour
             animator.SetBool("isJumping", false);
         }
 
+        // ----------------------------
+
+
+        // SETTING MUD
+
         if(other.gameObject.CompareTag("Mud")){
             speed = 3f;
             onGround = true;
             animator.SetBool("isJumping", false);
             animator.speed = 0.8f;
         }
+
+        // ----------------------------
+
+
 
         if(other.collider.tag == "Enemy"){
             Replay();
